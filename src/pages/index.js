@@ -22,7 +22,7 @@ export default function Home() {
       <meta name="author" content="Your Name" />
       <meta property="og:title" content="Your Page Title" />
       <meta property="og:description" content="This is a description of the page" />
-      <meta property="og:image" content="/hinh.jpeg" />
+      <meta property="og:image" content="/kos9.jpg" />
       <meta property="og:url" content="https://example.com" />
       <meta property="og:type" content="website" />
     </Head>
