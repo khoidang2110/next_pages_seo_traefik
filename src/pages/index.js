@@ -1,6 +1,6 @@
 import Image from "next/image";
 import localFont from "next/font/local";
-
+import Head from 'next/head';
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -14,6 +14,18 @@ const geistMono = localFont({
 
 export default function Home() {
   return (
+    <>
+       <Head>
+      <title>Your Page Title</title>
+      <meta name="description" content="This is a description of the page" />
+      <meta name="keywords" content="keyword1, keyword2, keyword3" />
+      <meta name="author" content="Your Name" />
+      <meta property="og:title" content="Your Page Title" />
+      <meta property="og:description" content="This is a description of the page" />
+      <meta property="og:image" content="https://example.com/your-image.jpg" />
+      <meta property="og:url" content="https://example.com" />
+      <meta property="og:type" content="website" />
+    </Head>
     <div
       className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
     >
@@ -111,5 +123,7 @@ export default function Home() {
         </a>
       </footer>
     </div>
+    </>
+   
   );
 }
