@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
        <Head>
-      <title>Your Page Title</title>
+      <title>trang tin tức</title>
       <meta name="description" content="This is a description of the page" />
       <meta name="keywords" content="keyword1, keyword2, keyword3" />
       <meta name="author" content="Your Name" />
