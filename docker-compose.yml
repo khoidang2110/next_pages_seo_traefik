@@ -16,23 +16,6 @@ services:
     networks:
       - traefik  # Kết nối container Next.js với network traefik
 
-  traefik:
-    image: traefik:v2.10
-    container_name: traefik
-    command:
-      - "--api.insecure=true"  # Bật giao diện quản lý của Traefik
-      - "--entrypoints.websecure.address=:443"  # Cấu hình entrypoint HTTPS
-      - "--providers.docker=true"  # Kết nối với Docker để quản lý các container qua Docker labels
-      - "--entrypoints.web.address=:80"  # Cấu hình entrypoint HTTP
-    ports:
-      - "80:80"   # HTTP
-      - "443:443" # HTTPS
-      - "8080:8080" # Traefik Dashboard
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"  # Cung cấp quyền truy cập Docker cho Traefik
-    networks:
-      - traefik  # Kết nối container Traefik với network traefik
-
 networks:
   traefik:
     external: true  # Đảm bảo Traefik và các dịch vụ container sử dụng cùng mạng này
