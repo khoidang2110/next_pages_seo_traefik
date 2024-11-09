@@ -8,16 +8,16 @@ services:
     ports:
       - "3000:3000"  # Mở cổng 3000 để có thể truy cập vào Next.js từ bên trong container
     labels:
-      - 'traefik.enable=true'  # Kích hoạt Traefik cho service này
-      - 'traefik.docker.network=traefik'  # Chỉ định Traefik network
-      - 'traefik.http.routers.nextjs.entrypoints=http'  # Cấu hình HTTP entrypoint
-      - 'traefik.http.routers.nextjs.rule=Host(`coinfe.trungthanhdev.com`) && PathPrefix(`/traefik`)'  # Định nghĩa rule cho routing Traefik
-      - 'traefik.http.services.nextjs.loadbalancer.server.port=3000'  # Cổng mà Next.js đang chạy trong container
-      - 'traefik.http.routers.nextjs-secure.entrypoints=https'  # Cấu hình HTTPS entrypoint
-      - 'traefik.http.routers.nextjs-secure.rule=Host(`coinfe.trungthanhdev.com`) && PathPrefix(`/traefik`)'  # Định nghĩa rule cho HTTPS routing
-      - 'traefik.http.routers.nextjs-secure.tls=true'  # Bật TLS cho HTTPS
-      - 'traefik.http.routers.nextjs-secure.tls.certresolver=letsencrypt'  # Cấu hình certresolver nếu dùng Let's Encrypt
-      - 'traefik.http.services.nextjs.loadbalancer.server.scheme=http'  # Định nghĩa protocol là HTTP trong dịch vụ Next.js
+
+
+
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik'
+      - 'traefik.http.routers.nextjs.entrypoints=http'
+      - 'traefik.http.routers.nextjs.rule=Host(`coinfe.trungthanhdev.com`) && PathPrefix(`/traefik`)'
+      - 'traefik.http.routers.nextjs-secure.entrypoints=https'
+      - 'traefik.http.routers.nextjs-secure.rule=Host(`coinfe.trungthanhdev.com`) && PathPrefix(`/traefik`)'
+      - 'traefik.http.routers.nextjs-secure.tls.certresolver=letsencrypt'
 
     networks:
       - traefik  # Kết nối container Next.js với network traefik
