@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  nextjs:
+    # Xây dựng image từ Dockerfile
+    build: .
+    
+    # Đặt tên container (tùy chọn)
+    container_name: nextjs-app
+    
+    # Expose port 3000 từ container ra ngoài
+    ports:
+      - "3000:3000"
+    
+    # Cấu hình mạng (tùy chọn, nhưng nếu bạn cần kết nối với các service khác thì cần có mạng riêng)
+    networks:
+      - nextjs-network
+    
+    # Đảm bảo ứng dụng khởi động lại nếu container gặp sự cố
+    restart: unless-stopped
+
+networks:
+  nextjs-network:
+    driver: bridge
