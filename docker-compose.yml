@@ -1,24 +1,38 @@
-version: "3.8"
+version: '3.7'
 
 services:
   nextjs:
-    # Xây dựng image từ Dockerfile
-    build: .
-    
-    # Đặt tên container (tùy chọn)
+    build:
+      context: .  # Chỉ định thư mục chứa Dockerfile của bạn
     container_name: nextjs-app
-    
-    # Expose port 3000 từ container ra ngoài
     ports:
-      - "3000:3000"
-    
-    # Cấu hình mạng (tùy chọn, nhưng nếu bạn cần kết nối với các service khác thì cần có mạng riêng)
+      - "3000:3000"  # Mở cổng 3000 để có thể truy cập vào Next.js từ bên trong container
+    labels:
+      - "traefik.enable=true"  # Kích hoạt Traefik cho service này
+      - "traefik.http.routers.nextjs.rule=Host(`coinfe.trungthanhdev.com`) && PathPrefix(`/traefik`)"  # Định nghĩa rule cho routing Traefik
+      - "traefik.http.services.nextjs.loadbalancer.server.port=3000"  # Cổng mà Next.js đang chạy trong container
+      - "traefik.http.routers.nextjs.entrypoints=websecure"  # Sử dụng entrypoint HTTPS
+      - "traefik.http.routers.nextjs.tls=true"  # Bật TLS cho HTTPS
     networks:
-      - nextjs-network
-    
-    # Đảm bảo ứng dụng khởi động lại nếu container gặp sự cố
-    restart: unless-stopped
+      - traefik  # Kết nối container Next.js với network traefik
+
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    command:
+      - "--api.insecure=true"  # Bật giao diện quản lý của Traefik
+      - "--entrypoints.websecure.address=:443"  # Cấu hình entrypoint HTTPS
+      - "--providers.docker=true"  # Kết nối với Docker để quản lý các container qua Docker labels
+      - "--entrypoints.web.address=:80"  # Cấu hình entrypoint HTTP
+    ports:
+      - "80:80"   # HTTP
+      - "443:443" # HTTPS
+      - "8080:8080" # Traefik Dashboard
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"  # Cung cấp quyền truy cập Docker cho Traefik
+    networks:
+      - traefik  # Kết nối container Traefik với network traefik
 
 networks:
-  nextjs-network:
-    driver: bridge
+  traefik:
+    external: true  # Đảm bảo Traefik và các dịch vụ container sử dụng cùng mạng này
