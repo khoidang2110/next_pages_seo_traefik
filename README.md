@@ -27,7 +27,9 @@ providers:
   docker:
     network: traefik
     exposedByDefault: false
+    
 3. nano docker-compose.yml
+   
 version: '3'
 services:
   reverse-proxy:
@@ -47,11 +49,14 @@ services:
 networks:
   traefik:
     external: true
+    
 4. tao file acme.json
+5. 
   touch acme.json
  chmod 600 acme.json
 
-5. tao network 
+6. tao network
+   
 docker network create traefik
 
 docker-compose up -d
