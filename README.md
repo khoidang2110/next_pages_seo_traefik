@@ -45,6 +45,7 @@ services:
       - ./acme.json:/acme.json
     networks:
       - traefik
+    restart: always
 
 networks:
   traefik:
