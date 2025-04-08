@@ -18,7 +18,7 @@ api:
 certificatesResolvers:
   letsencrypt:  # Đây là tên resolver bạn đang sử dụng trong nhãn
     acme:
-      email: nctuan.dev@gmail.com  # Thay bằng email của bạn
+      email: khoidang2110@gmail.com  # Thay bằng email của bạn
       storage: acme.json  # File lưu chứng chỉ SSL
       httpChallenge:
         entryPoint: http  # Xác thực qua HTTP challenge trên cổng 80
