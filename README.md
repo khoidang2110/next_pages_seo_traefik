@@ -8,7 +8,7 @@ cd traefik
 nano traefik.yml
  
 📄 2. Nội dung file traefik.yml
-
+yaml
 entryPoints:
   http:
     address: ":80"
