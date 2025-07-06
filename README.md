@@ -12,7 +12,7 @@ mkdir traefik
 cd traefik
 nano traefik.yml
 ```
-📄 Bước 2: Nội dung file traefik.yml
+## 📄 Bước 2: Nội dung file traefik.yml
 ```bash
 entryPoints:
   http:
@@ -37,7 +37,7 @@ providers:
     network: traefik
     exposedByDefault: false
 ```
-🐳 Bước 3: Tạo file docker-compose.yml
+## 🐳 Bước 3: Tạo file docker-compose.yml
 ```bash
 version: '3'
 
@@ -61,14 +61,14 @@ networks:
   traefik:
     external: true
 ```
-🔐 Bước 4: Tạo file acme.json và phân quyền
+## 🔐 Bước 4: Tạo file acme.json và phân quyền
 
 touch acme.json
 chmod 600 acme.json
-🌐 Bước 5: Tạo Docker network traefik
+## 🌐 Bước 5: Tạo Docker network traefik
 
 docker network create traefik
-🚀 Bước 6: Khởi động Traefik
+## 🚀 Bước 6: Khởi động Traefik
 
 docker-compose up -d
 
