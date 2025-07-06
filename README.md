@@ -67,11 +67,12 @@ networks:
  chmod 600 acme.json
 ```
 ## 🌐 Bước 5: Tạo Docker network traefik
-
+```bash
 docker network create traefik
+```
 ## 🚀 Bước 6: Khởi động Traefik
-
+```bash
 docker-compose up -d
-
+```
 
 
