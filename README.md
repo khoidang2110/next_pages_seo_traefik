@@ -11,10 +11,9 @@ cd /home/root
 mkdir traefik
 cd traefik
 nano traefik.yml
+```
 📄 Bước 2: Nội dung file traefik.yml
-yaml
-Copy
-Edit
+```bash
 entryPoints:
   http:
     address: ":80"
@@ -37,10 +36,9 @@ providers:
   docker:
     network: traefik
     exposedByDefault: false
+```
 🐳 Bước 3: Tạo file docker-compose.yml
-yaml
-Copy
-Edit
+```bash
 version: '3'
 
 services:
@@ -62,33 +60,17 @@ services:
 networks:
   traefik:
     external: true
+```
 🔐 Bước 4: Tạo file acme.json và phân quyền
-bash
-Copy
-Edit
+
 touch acme.json
 chmod 600 acme.json
 🌐 Bước 5: Tạo Docker network traefik
-bash
-Copy
-Edit
+
 docker network create traefik
 🚀 Bước 6: Khởi động Traefik
-bash
-Copy
-Edit
+
 docker-compose up -d
-✅ Kiểm Tra Dashboard
-Truy cập tại:
 
-arduino
-Copy
-Edit
-http://<IP-CUA-BAN>:8080/dashboard/
-📌 Lưu ý: Nếu dùng domain thật và muốn HTTPS hoạt động, hãy đảm bảo:
-
-Trỏ đúng DNS về IP máy chủ.
-
-Mở port 80 và 443 trên router nếu chạy tại nhà.
 
 
