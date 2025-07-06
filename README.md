@@ -62,9 +62,10 @@ networks:
     external: true
 ```
 ## 🔐 Bước 4: Tạo file acme.json và phân quyền
-
-# touch acme.json
-# chmod 600 acme.json
+```bash
+ touch acme.json
+ chmod 600 acme.json
+```
 ## 🌐 Bước 5: Tạo Docker network traefik
 
 docker network create traefik
