@@ -1,36 +1,41 @@
-Hướng dẫn chạy traefik:
-1. ở unbutu cd vào home root:
+# 🚀 Hướng Dẫn Chạy Traefik Trên Ubuntu
 
+## 🧰 1. Tạo thư mục và file cấu hình
+
+cd /home/root
 mkdir traefik
- cd traefik
- nano traefik.yml
+cd traefik
+nano traefik.yml
  
-2. copy: 
+📄 2. Nội dung file traefik.yml
 
 entryPoints:
   http:
     address: ":80"
   https:
     address: ":443"
+
 api:
   dashboard: true
   insecure: true
+
 certificatesResolvers:
-  letsencrypt:  # Đây là tên resolver bạn đang sử dụng trong nhãn
+  letsencrypt:
     acme:
       email: khoidang2110@gmail.com  # Thay bằng email của bạn
-      storage: acme.json  # File lưu chứng chỉ SSL
+      storage: acme.json
       httpChallenge:
-        entryPoint: http  # Xác thực qua HTTP challenge trên cổng 80
+        entryPoint: http
 
 providers:
   docker:
     network: traefik
     exposedByDefault: false
     
-3. nano docker-compose.yml
-   
+🐳 3. Tạo file docker-compose.yml
+
 version: '3'
+
 services:
   reverse-proxy:
     image: traefik:v2.11
@@ -38,7 +43,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "8080:8080"
+      - "8080:8080"  # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yml:/etc/traefik/traefik.yml
@@ -51,14 +56,16 @@ networks:
   traefik:
     external: true
     
-4. tao file acme.json
-5. 
-  touch acme.json
- chmod 600 acme.json
+🔐 4. Tạo file acme.json và phân quyền
 
-6. tao network
-   
+touch acme.json
+chmod 600 acme.json
+
+🌐 5. Tạo Docker network traefik
+
 docker network create traefik
+
+🚀 6. Khởi động Traefik
 
 docker-compose up -d
 
