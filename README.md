@@ -1,14 +1,20 @@
 # 🚀 Hướng Dẫn Chạy Traefik Trên Ubuntu
 
-## 🧰 1. Tạo thư mục và file cấu hình
+Tự thiết lập reverse proxy với HTTPS tự động bằng Let's Encrypt & Traefik 🚀
 
+---
+
+## 🧰 Bước 1: Tạo thư mục và file cấu hình
+
+```bash
 cd /home/root
 mkdir traefik
 cd traefik
 nano traefik.yml
- 
-📄 2. Nội dung file traefik.yml
+📄 Bước 2: Nội dung file traefik.yml
 yaml
+Copy
+Edit
 entryPoints:
   http:
     address: ":80"
@@ -31,9 +37,10 @@ providers:
   docker:
     network: traefik
     exposedByDefault: false
-    
-🐳 3. Tạo file docker-compose.yml
-
+🐳 Bước 3: Tạo file docker-compose.yml
+yaml
+Copy
+Edit
 version: '3'
 
 services:
@@ -55,17 +62,19 @@ services:
 networks:
   traefik:
     external: true
-    
-🔐 4. Tạo file acme.json và phân quyền
-
+🔐 Bước 4: Tạo file acme.json và phân quyền
+bash
+Copy
+Edit
 touch acme.json
 chmod 600 acme.json
-
-🌐 5. Tạo Docker network traefik
-
+🌐 Bước 5: Tạo Docker network traefik
+bash
+Copy
+Edit
 docker network create traefik
-
-🚀 6. Khởi động Traefik
-
+🚀 Bước 6: Khởi động Traefik
+bash
+Copy
+Edit
 docker-compose up -d
-
