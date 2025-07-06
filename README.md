@@ -78,3 +78,17 @@ bash
 Copy
 Edit
 docker-compose up -d
+✅ Kiểm Tra Dashboard
+Truy cập tại:
+
+arduino
+Copy
+Edit
+http://<IP-CUA-BAN>:8080/dashboard/
+📌 Lưu ý: Nếu dùng domain thật và muốn HTTPS hoạt động, hãy đảm bảo:
+
+Trỏ đúng DNS về IP máy chủ.
+
+Mở port 80 và 443 trên router nếu chạy tại nhà.
+
+
